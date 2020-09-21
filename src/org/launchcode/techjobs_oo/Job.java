@@ -2,6 +2,8 @@ package org.launchcode.techjobs_oo;
 
 import java.util.Objects;
 
+import static org.junit.Assert.assertTrue;
+
 public class Job {
 
     private int id;
@@ -13,9 +15,6 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
-    // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
-    //  other five fields. The second constructor should also call the first in order to initialize
-    //  the 'id' field.
 
     public Job() {
         id = nextId;
@@ -31,9 +30,6 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,9 +43,50 @@ public class Job {
         return Objects.hash(id);
     }
 
+    @Override
+    public String toString() {
+        String returnString = "\n"+
+                "ID: " + this.getId() + "\n";
 
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
+
+        if (this.getName() == null || this.getName() == "") {
+            returnString += "Name: Data not available \n";
+        }
+        else {
+            returnString += "Name: " + this.getName() + "\n";
+        }
+
+        if (this.getEmployer() == null || this.getEmployer().getValue() == "" ) {
+            returnString += "Employer: Data not available \n";
+        }
+        else {
+            returnString += "Employer: " + this.getEmployer() + "\n";
+        }
+
+        if (this.getLocation() == null || this.getLocation().getValue() == "") {
+            returnString += "Location: Data not available \n";
+        }
+        else {
+            returnString += "Location: " + this.getLocation() + "\n";
+        }
+
+        if (this.getPositionType() == null || this.getPositionType().getValue() == "") {
+            returnString += "Position Type: Data not available \n";
+        }
+        else{
+            returnString += "Position Type: " + this.getPositionType() + "\n";
+        }
+
+        if(this.getCoreCompetency() == null || this.getCoreCompetency().getValue() == "")
+        {
+            returnString += "Core Competency: Data not available \n";
+        }
+        else{
+            returnString += "Core Competency: " + this.getCoreCompetency() + "\n";
+        }
+        return returnString;
+
+    }
 
 
     public int getId() {
@@ -57,7 +94,11 @@ public class Job {
     }
 
     public String getName() {
-        return name;
+        if (this.name != null) {
+            return this.name;
+        } else {
+            return "Data not available";
+        }
     }
 
     public void setName(String name) {
@@ -95,4 +136,5 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
+
 }
